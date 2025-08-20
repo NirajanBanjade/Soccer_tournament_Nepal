@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Calendar, Trophy, Target, Users, AlertTriangle, Square, Menu, X, Home } from 'lucide-react';
 import './App.css';
+import HTLogo from "./images/HT.png";
+import NRLogo from "./images/NR.png";
+import BTLogo from "./images/BT.png";
+import KCLogo from "./images/KC.png";
 
 const SoccerTournamentApp = () => {
   const [currentPage, setCurrentPage] = useState('fixtures');
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Team data with logos and players
+  // Team data with PNG logos and players
   const teams = {
-    'HIMALAYAN TIGER': {
-      logo: '🐅',
+    'HIMALAYAN TIGERS': {
+      logo: HTLogo, // Add your PNG file path here
       color: 'linear-gradient(135deg, #f97316 0%, #ca8a04 100%)',
       bgColor: '#fff7ed',
       players: [
@@ -21,7 +25,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     'NEPALI RHINOS': {
-      logo: '🦏',
+      logo: NRLogo, // Add your PNG file path here
       color: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
       bgColor: '#fef2f2',
       players: [
@@ -32,7 +36,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     'BENGALI TIGERS': {
-      logo: '🐯',
+      logo: BTLogo, // Add your PNG file path here
       color: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
       bgColor: '#faf5ff',
       players: [
@@ -42,7 +46,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     'KHUKURI CROSS': {
-      logo: '⚔️',
+      logo: KCLogo, // Add your PNG file path here
       color: 'linear-gradient(135deg, #dc2626 0%, #000000 100%)',
       bgColor: '#fef2f2',
       players: [
@@ -58,10 +62,10 @@ const SoccerTournamentApp = () => {
   const fixtures = [
     { 
       id: 1,
-      team1: 'HIMALAYAN TIGER', 
+      team1: 'HIMALAYAN TIGERS', 
       team2: 'NEPALI RHINOS', 
       date: '08/20/2025',
-      time: '6:30 PM',
+      time: '3:00 PM',
       score1: null,
       score2: null,
       status: 'upcoming'
@@ -78,7 +82,7 @@ const SoccerTournamentApp = () => {
     },
     { 
       id: 3,
-      team1: 'HIMALAYAN TIGER', 
+      team1: 'HIMALAYAN TIGERS', 
       team2: 'BENGALI TIGERS', 
       date: '08/24/2025',
       time: '3:30 PM',
@@ -98,7 +102,7 @@ const SoccerTournamentApp = () => {
     },
     { 
       id: 5,
-      team1: 'HIMALAYAN TIGER', 
+      team1: 'HIMALAYAN TIGERS', 
       team2: 'KHUKURI CROSS', 
       date: '08/28/2025',
       time: '3:00 PM',
@@ -134,7 +138,7 @@ const SoccerTournamentApp = () => {
 
   // League table - UPDATE THESE DAILY
   const leagueTable = [
-    { team: 'HIMALAYAN TIGER', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
+    { team: 'HIMALAYAN TIGERS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'BENGALI TIGERS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'KHUKURI CROSS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 }
@@ -157,7 +161,11 @@ const SoccerTournamentApp = () => {
           style={{ background: teams[team].color }}
         >
           <div className="team-modal-info">
-            <span className="team-modal-logo">{teams[team].logo}</span>
+            <img 
+              src={teams[team].logo} 
+              alt={`${team} logo`}
+              className="team-modal-logo-img"
+            />
             <h2 className="team-modal-title">{team}</h2>
           </div>
           <button 
@@ -203,7 +211,11 @@ const SoccerTournamentApp = () => {
                   onClick={() => setSelectedTeam(fixture.team1)}
                   className={`team-button team-${fixture.team1.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <span className="team-logo">{teams[fixture.team1].logo}</span>
+                  <img 
+                    src={teams[fixture.team1].logo} 
+                    alt={`${fixture.team1} logo`}
+                    className="team-logo-img"
+                  />
                   <span>{fixture.team1}</span>
                 </button>
                 
@@ -224,7 +236,11 @@ const SoccerTournamentApp = () => {
                   onClick={() => setSelectedTeam(fixture.team2)}
                   className={`team-button reverse team-${fixture.team2.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <span className="team-logo">{teams[fixture.team2].logo}</span>
+                  <img 
+                    src={teams[fixture.team2].logo} 
+                    alt={`${fixture.team2} logo`}
+                    className="team-logo-img"
+                  />
                   <span>{fixture.team2}</span>
                 </button>
               </div>
@@ -274,7 +290,11 @@ const SoccerTournamentApp = () => {
                     onClick={() => setSelectedTeam(team.team)}
                     className="team-info-button"
                   >
-                    <span className="team-info-logo">{teams[team.team].logo}</span>
+                    <img 
+                      src={teams[team.team].logo} 
+                      alt={`${team.team} logo`}
+                      className="team-info-logo-img"
+                    />
                     <span>{team.team}</span>
                   </button>
                 </td>

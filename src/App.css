@@ -581,6 +581,28 @@
   font-weight: 500;
 }
 
+/* Team Logo Images */
+.team-logo-img {
+  width: 2.6rem;   /* was 2rem */
+  height: 2.6rem;  /* was 2rem */
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.team-info-logo-img {
+  width: 2rem;   /* was 1.5rem */
+  height: 2rem;  /* was 1.5rem */
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.team-modal-logo-img {
+  width: 3.7rem;   /* was 3rem */
+  height: 3.7rem;  /* was 3rem */
+  object-fit: contain;
+  border-radius: 8px;
+}
+
 /* Team-specific background colors */
 .team-himalayan-tiger:hover {
   background: #fff7ed;
@@ -701,10 +723,21 @@
     margin-top: -3rem !important;
   }
 
-  /* Team modal mobile */
-  .team-modal {
-    padding: 0.5rem !important;
+/* Mobile Responsive Adjustments for Team Logos */
+@media (max-width: 768px) {
+  .team-logo-img {
+    width: 2rem;   /* was 1.5rem */
+    height: 2rem;  /* was 1.5rem */
   }
+  .team-info-logo-img {
+    width: 1.80rem;    /* was 1.25rem */
+    height: 1.80rem;   /* was 1.25rem */
+  }
+  .team-modal-logo-img {
+    width: 2.7rem;    /* was 2rem */
+    height: 2.7rem;   /* was 2rem */
+  }
+}
   
   .team-modal-content {
     width: 100% !important;
