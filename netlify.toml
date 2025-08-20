@@ -1,0 +1,10 @@
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single Page App fallback for React Router/Vite
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
