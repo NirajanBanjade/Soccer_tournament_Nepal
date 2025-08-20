@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Trophy, Target, Users, AlertTriangle, Square, Menu, X, Home } from 'lucide-react';
+import './App.css';
 
 const SoccerTournamentApp = () => {
   const [currentPage, setCurrentPage] = useState('fixtures');
@@ -60,7 +61,7 @@ const SoccerTournamentApp = () => {
       team1: 'HIMALAYAN TIGER', 
       team2: 'NEPALI RHINOS', 
       date: '08/20/2025',
-      time: '3:00 PM',
+      time: '6:30 PM',
       score1: null,
       score2: null,
       status: 'upcoming'
@@ -117,7 +118,7 @@ const SoccerTournamentApp = () => {
     }
   ];
  
-  // Tournament statistics - UPDATE THESE DAILY ---------------------------------------------------------------------------------------------------
+  // Tournament statistics - UPDATE THESE DAILY
   const stats = {
     topScorer: { name: 'Player Name', team: 'TEAM NAME', goals: 0 },
     topAssists: { name: 'Player Name', team: 'TEAM NAME', assists: 0 },
@@ -131,7 +132,7 @@ const SoccerTournamentApp = () => {
     }
   };
 
-  // League table - UPDATE THESE DAILY---------------------------------------------------------------------------------------------------
+  // League table - UPDATE THESE DAILY
   const leagueTable = [
     { team: 'HIMALAYAN TIGER', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
@@ -146,96 +147,39 @@ const SoccerTournamentApp = () => {
   ];
 
   const TeamModal = ({ team, onClose }) => (
-    <div 
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1000,
-        padding: '1rem'
-      }}
-      onClick={onClose}
-    >
+    <div className="team-modal" onClick={onClose}>
       <div 
-        style={{
-          background: 'white',
-          borderRadius: '16px',
-          maxWidth: '600px',
-          width: '100%',
-          maxHeight: '80vh',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
+        className="team-modal-content"
         onClick={e => e.stopPropagation()}
       >
-        <div style={{ 
-          background: teams[team].color, 
-          padding: '2rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          color: 'white'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontSize: '3rem' }}>{teams[team].logo}</span>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', margin: 0 }}>{team}</h2>
+        <div 
+          className="team-modal-header" 
+          style={{ background: teams[team].color }}
+        >
+          <div className="team-modal-info">
+            <span className="team-modal-logo">{teams[team].logo}</span>
+            <h2 className="team-modal-title">{team}</h2>
           </div>
           <button 
             onClick={onClose}
-            style={{ 
-              background: 'none', 
-              border: 'none', 
-              color: 'white', 
-              fontSize: '2rem', 
-              cursor: 'pointer',
-              padding: '0.5rem'
-            }}
+            className="modal-close-button"
           >
             ×
           </button>
         </div>
         
-        <div style={{ padding: '2rem', flex: 1, overflow: 'auto' }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="team-modal-body">
+          <h3 className="players-section-title">
             <Users size={24} />
             Squad ({teams[team].players.length} players)
           </h3>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-            gap: '1rem' 
-          }}>
+          <div className="players-grid">
             {teams[team].players.map((player, index) => (
-              <div key={index} style={{
-                display: 'flex',
-                alignItems: 'center',
-                padding: '1rem',
-                background: '#f9fafb',
-                borderRadius: '8px',
-                gap: '1rem'
-              }}>
-                <div style={{
-                  width: '32px',
-                  height: '32px',
-                  background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: '0.875rem'
-                }}>
+              <div key={index} className="player-card">
+                <div className="player-number">
                   {index + 1}
                 </div>
-                <span style={{ fontWeight: '500' }}>{player}</span>
+                <span className="player-name">{player}</span>
               </div>
             ))}
           </div>
@@ -246,109 +190,46 @@ const SoccerTournamentApp = () => {
 
   const FixturesPage = () => (
     <div>
-      <h2 style={{ 
-        fontSize: '2.5rem', 
-        fontWeight: 'bold', 
-        marginBottom: '2rem', 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '1rem' 
-      }}>
+      <h2 className="page-header">
         <Calendar size={32} color="#2563eb" />
         Fixtures & Results
       </h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div className="fixtures-container">
         {fixtures.map((fixture, index) => (
-          <div key={index} style={{
-            background: 'white',
-            borderRadius: '12px',
-            padding: '2rem',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            border: '1px solid #e5e7eb',
-            transition: 'all 0.3s ease'
-          }}>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '1rem'
-            }}>
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '2rem',
-                flex: 1,
-                justifyContent: 'space-between',
-                minWidth: '300px'
-              }}>
+          <div key={index} className="fixture-card">
+            <div className="fixture-content">
+              <div className="fixture-teams-container">
                 <button 
                   onClick={() => setSelectedTeam(fixture.team1)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    padding: '1rem',
-                    background: 'transparent',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold'
-                  }}
-                  onMouseEnter={e => e.target.style.background = teams[fixture.team1].bgColor}
-                  onMouseLeave={e => e.target.style.background = 'transparent'}
+                  className={`team-button team-${fixture.team1.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <span style={{ fontSize: '2rem' }}>{teams[fixture.team1].logo}</span>
+                  <span className="team-logo">{teams[fixture.team1].logo}</span>
                   <span>{fixture.team1}</span>
                 </button>
                 
-                <div style={{ textAlign: 'center', padding: '1rem' }}>
+                <div className="vs-container">
                   {fixture.status === 'completed' ? (
-                    <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>
+                    <div className="score-display">
                       {fixture.score1} - {fixture.score2}
                     </div>
                   ) : (
-                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#6b7280' }}>VS</div>
+                    <div className="vs-text">VS</div>
                   )}
-                  <div style={{ fontSize: '0.875rem', color: '#6b7280', marginTop: '0.5rem' }}>
+                  <div className="match-info">
                     {fixture.date} • {fixture.time}
                   </div>
                 </div>
                 
                 <button 
                   onClick={() => setSelectedTeam(fixture.team2)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    padding: '1rem',
-                    background: 'transparent',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    flexDirection: 'row-reverse'
-                  }}
-                  onMouseEnter={e => e.target.style.background = teams[fixture.team2].bgColor}
-                  onMouseLeave={e => e.target.style.background = 'transparent'}
+                  className={`team-button reverse team-${fixture.team2.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <span style={{ fontSize: '2rem' }}>{teams[fixture.team2].logo}</span>
+                  <span className="team-logo">{teams[fixture.team2].logo}</span>
                   <span>{fixture.team2}</span>
                 </button>
               </div>
               
-              <div style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '20px',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                background: fixture.status === 'completed' ? '#dcfce7' : '#fef3c7',
-                color: fixture.status === 'completed' ? '#166534' : '#92400e'
-              }}>
+              <div className={`status-badge ${fixture.status === 'completed' ? 'status-completed' : 'status-upcoming'}`}>
                 {fixture.status === 'completed' ? 'Completed' : 'Upcoming'}
               </div>
             </div>
@@ -360,152 +241,86 @@ const SoccerTournamentApp = () => {
 
   const TablePage = () => (
     <div>
-      <h2 style={{ 
-        fontSize: '2.5rem', 
-        fontWeight: 'bold', 
-        marginBottom: '2rem', 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '1rem' 
-      }}>
+      <h2 className="page-header">
         <Home size={32} color="#7c3aed" />
         League Table
       </h2>
-      <div style={{
-        background: 'white',
-        borderRadius: '12px',
-        padding: '2rem',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        border: '1px solid #e5e7eb'
-      }}>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead style={{
-              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
-              color: 'white'
-            }}>
-              <tr>
-                <th style={{ padding: '1rem', textAlign: 'left' }}>Pos</th>
-                <th style={{ padding: '1rem', textAlign: 'left' }}>Team</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>P</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>W</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>D</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>L</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>GF</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>GA</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>GD</th>
-                <th style={{ padding: '1rem', textAlign: 'center' }}>Pts</th>
+      <div className="table-container">
+        <table className="league-table">
+          <thead className="table-header">
+            <tr>
+              <th>Pos</th>
+              <th>Team</th>
+              <th>P</th>
+              <th>W</th>
+              <th>D</th>
+              <th>L</th>
+              <th>GF</th>
+              <th>GA</th>
+              <th>GD</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leagueTable.map((team, index) => (
+              <tr key={team.team} className={`table-row ${index === 0 ? 'champion' : ''}`}>
+                <td className="table-cell">
+                  <div className={`position-badge position-${index === 0 ? '1' : index === 1 ? '2' : index === 2 ? '3' : 'other'}`}>
+                    {index + 1}
+                  </div>
+                </td>
+                <td className="table-cell">
+                  <button 
+                    onClick={() => setSelectedTeam(team.team)}
+                    className="team-info-button"
+                  >
+                    <span className="team-info-logo">{teams[team.team].logo}</span>
+                    <span>{team.team}</span>
+                  </button>
+                </td>
+                <td className="table-cell center">{team.wins + team.draws + team.losses}</td>
+                <td className="table-cell center wins-stat">{team.wins}</td>
+                <td className="table-cell center draws-stat">{team.draws}</td>
+                <td className="table-cell center losses-stat">{team.losses}</td>
+                <td className="table-cell center">{team.goalsFor}</td>
+                <td className="table-cell center">{team.goalsAgainst}</td>
+                <td className="table-cell center">{team.goalDiff > 0 ? '+' : ''}{team.goalDiff}</td>
+                <td className="table-cell center">
+                  <span className="points-badge">
+                    {team.points}
+                  </span>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {leagueTable.map((team, index) => (
-                <tr key={team.team} style={{ 
-                  background: index === 0 ? '#fef3c7' : index % 2 === 0 ? '#f9fafb' : 'white'
-                }}>
-                  <td style={{ padding: '1rem' }}>
-                    <div style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 'bold',
-                      fontSize: '0.875rem',
-                      background: index === 0 ? '#f59e0b' : 
-                                 index === 1 ? '#9ca3af' : 
-                                 index === 2 ? '#f97316' : '#e5e7eb',
-                      color: index < 3 ? 'white' : '#374151'
-                    }}>
-                      {index + 1}
-                    </div>
-                  </td>
-                  <td style={{ padding: '1rem' }}>
-                    <button 
-                      onClick={() => setSelectedTeam(team.team)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        fontSize: '1rem',
-                        fontWeight: '600'
-                      }}
-                    >
-                      <span style={{ fontSize: '1.5rem' }}>{teams[team.team].logo}</span>
-                      <span>{team.team}</span>
-                    </button>
-                  </td>
-                  <td style={{ padding: '1rem', textAlign: 'center' }}>{team.wins + team.draws + team.losses}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center', color: '#059669' }}>{team.wins}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center', color: '#d97706' }}>{team.draws}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center', color: '#dc2626' }}>{team.losses}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center' }}>{team.goalsFor}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center' }}>{team.goalsAgainst}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center' }}>{team.goalDiff > 0 ? '+' : ''}{team.goalDiff}</td>
-                  <td style={{ padding: '1rem', textAlign: 'center' }}>
-                    <span style={{
-                      background: '#dbeafe',
-                      color: '#1e40af',
-                      padding: '0.25rem 0.75rem',
-                      borderRadius: '20px',
-                      fontWeight: 'bold'
-                    }}>
-                      {team.points}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 
   const StatisticsPage = () => {
-    const StatCard = ({ icon: Icon, title, value, subtitle, bgColor, details = [], cardType = null }) => (
-      <div style={{
-        background: bgColor,
-        borderRadius: '12px',
-        padding: '2rem',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        border: '1px solid #e5e7eb',
-        minHeight: '200px'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-          <div>
-            <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.5rem' }}>{title}</p>
-            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: 0 }}>{value}</p>
-            {subtitle && <p style={{ fontSize: '0.875rem', color: '#6b7280', marginTop: '0.5rem' }}>{subtitle}</p>}
+    const StatCard = ({ icon: Icon, title, value, subtitle, cardType, details = [] }) => (
+      <div className={`stat-card ${cardType}`}>
+        <div className="stat-card-header">
+          <div className="stat-card-info">
+            <p className="stat-title">{title}</p>
+            <p className="stat-value">{value}</p>
+            {subtitle && <p className="stat-subtitle">{subtitle}</p>}
           </div>
-          <div style={{
-            padding: '1rem',
-            background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
-            borderRadius: '12px'
-          }}>
+          <div className="stat-icon-container">
             <Icon size={32} color="white" />
           </div>
         </div>
         
-        {details && details.length > 0 && (cardType === 'red' || cardType === 'yellow') && (
-          <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #e5e7eb' }}>
-            <p style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
-              {cardType === 'red' ? 'Red Cards:' : 'Yellow Cards:'}
+        {details && details.length > 0 && (cardType === 'red-cards' || cardType === 'yellow-cards') && (
+          <div className="card-details">
+            <p className="card-details-title">
+              {cardType === 'red-cards' ? 'Red Cards:' : 'Yellow Cards:'}
             </p>
-            <div style={{ maxHeight: '100px', overflowY: 'auto' }}>
+            <div className="card-details-list">
               {details.map((card, index) => (
-                <div key={index} style={{
-                  fontSize: '0.75rem',
-                  color: '#6b7280',
-                  background: '#f9fafb',
-                  padding: '0.5rem',
-                  borderRadius: '4px',
-                  marginBottom: '0.25rem'
-                }}>
-                  <span style={{ fontWeight: '500' }}>{card.player}</span>
+                <div key={index} className="card-detail-item">
+                  <span className="card-detail-player">{card.player}</span>
                   <span> (Match {card.match})</span>
                 </div>
               ))}
@@ -517,53 +332,40 @@ const SoccerTournamentApp = () => {
 
     return (
       <div>
-        <h2 style={{ 
-          fontSize: '2.5rem', 
-          fontWeight: 'bold', 
-          marginBottom: '2rem', 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '1rem' 
-        }}>
+        <h2 className="page-header">
           <Trophy size={32} color="#059669" />
           Tournament Statistics
         </h2>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '2rem' 
-        }}>
+        <div className="stats-grid">
           <StatCard
             icon={Trophy}
             title="Top Scorer"
             value={stats.topScorer.goals}
             subtitle={`${stats.topScorer.name} (${stats.topScorer.team})`}
-            bgColor="linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)"
+            cardType="goals"
           />
           <StatCard
             icon={Target}
             title="Most Assists"
             value={stats.topAssists.assists}
             subtitle={`${stats.topAssists.name} (${stats.topAssists.team})`}
-            bgColor="linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)"
+            cardType="assists"
           />
           <StatCard
             icon={Square}
             title="Red Cards"
             value={stats.redCards.count}
             subtitle="Total issued"
-            bgColor="linear-gradient(135deg, #fecaca 0%, #fca5a5 100%)"
+            cardType="red-cards"
             details={stats.redCards.details}
-            cardType="red"
           />
           <StatCard
             icon={AlertTriangle}
             title="Yellow Cards"
             value={stats.yellowCards.count}
             subtitle="Total issued"
-            bgColor="linear-gradient(135deg, #fed7aa 0%, #fdba74 100%)"
+            cardType="yellow-cards"
             details={stats.yellowCards.details}
-            cardType="yellow"
           />
         </div>
       </div>
@@ -584,92 +386,39 @@ const SoccerTournamentApp = () => {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #f3e8ff 100%)',
-      fontFamily: 'system-ui, -apple-system, sans-serif'
-    }}>
+    <div className="tournament-app">
       {/* Header */}
-      <div style={{
-        background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #1d4ed8 100%)',
-        color: 'white',
-        padding: '3rem 0',
-        textAlign: 'center'
-      }}>
-        <div style={{
-          fontSize: '3rem',
-          fontWeight: 'bold',
-          marginBottom: '1rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: '1rem'
-        }}>
+      <div className="app-header">
+        <div className="header-title">
           <Trophy size={48} color="#fbbf24" />
           <span>TXST Nepali Football Tournament</span>
         </div>
-        <p style={{ fontSize: '1.25rem', opacity: 0.9, margin: 0 }}>Champions League Style Competition</p>
+        <p className="header-subtitle">Champions League Style Competition</p>
       </div>
 
       {/* Navigation */}
-      <nav style={{
-        background: 'white',
-        borderBottom: '2px solid #e5e7eb',
-        padding: '0 2rem'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '60px'
-        }}>
-          <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>Tournament</div>
+      <nav className="nav-container">
+        <div className="nav-content">
+          <div className="nav-logo">Tournament</div>
           
           {/* Desktop Menu */}
-          <ul style={{
-            display: 'flex',
-            gap: '2rem',
-            listStyle: 'none',
-            margin: 0,
-            padding: 0
-          }}>
+          <ul className="nav-desktop-menu">
             {menuItems.map(item => (
               <li key={item.id}>
-                <div
-                  style={{
-                    padding: '0.75rem 1.5rem',
-                    cursor: 'pointer',
-                    borderRadius: '8px',
-                    transition: 'all 0.3s ease',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    fontWeight: '500',
-                    background: currentPage === item.id ? '#dbeafe' : 'transparent',
-                    color: currentPage === item.id ? '#1e40af' : '#374151'
-                  }}
+                <button
+                  className={`nav-item ${currentPage === item.id ? 'active' : ''}`}
                   onClick={() => setCurrentPage(item.id)}
                 >
                   <item.icon size={20} />
                   {item.label}
-                </div>
+                </button>
               </li>
             ))}
           </ul>
 
           {/* Mobile Menu Button */}
           <button 
-            style={{
-              display: 'none',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '0.5rem',
-              borderRadius: '4px'
-            }}
+            className="nav-mobile-button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -678,39 +427,12 @@ const SoccerTournamentApp = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div style={{
-            position: 'fixed',
-            top: '60px',
-            left: 0,
-            right: 0,
-            background: 'white',
-            borderBottom: '2px solid #e5e7eb',
-            zIndex: 100,
-            padding: '1rem 2rem'
-          }}>
-            <ul style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '1rem', 
-              listStyle: 'none', 
-              margin: 0, 
-              padding: 0 
-            }}>
+          <div className="nav-mobile-menu">
+            <ul className="nav-mobile-list">
               {menuItems.map(item => (
                 <li key={item.id}>
-                  <div
-                    style={{
-                      padding: '0.75rem 1.5rem',
-                      cursor: 'pointer',
-                      borderRadius: '8px',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      fontWeight: '500',
-                      background: currentPage === item.id ? '#dbeafe' : 'transparent',
-                      color: currentPage === item.id ? '#1e40af' : '#374151'
-                    }}
+                  <button
+                    className={`nav-item ${currentPage === item.id ? 'active' : ''}`}
                     onClick={() => {
                       setCurrentPage(item.id);
                       setMobileMenuOpen(false);
@@ -718,7 +440,7 @@ const SoccerTournamentApp = () => {
                   >
                     <item.icon size={20} />
                     {item.label}
-                  </div>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -727,11 +449,7 @@ const SoccerTournamentApp = () => {
       </nav>
 
       {/* Main Content */}
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '2rem'
-      }}>
+      <div className="main-content">
         {renderCurrentPage()}
       </div>
 
