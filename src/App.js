@@ -63,12 +63,12 @@ const SoccerTournamentApp = () => {
     { 
       id: 1,
       team1: 'HIMALAYAN TIGERS', 
-      team2: 'NEPALI RHINOS', 
+      team2: 'KHUKURI CROSS', 
       date: '08/20/2025',
-      time: '3:00 PM',
+      time: '6:00 PM',
       score1: null,
       score2: null,
-      status: 'upcoming'
+      status: 'Opening Match'
     },
     { 
       id: 2,
@@ -103,7 +103,7 @@ const SoccerTournamentApp = () => {
     { 
       id: 5,
       team1: 'HIMALAYAN TIGERS', 
-      team2: 'KHUKURI CROSS', 
+      team2: 'NEPALI RHINOS', 
       date: '08/28/2025',
       time: '3:00 PM',
       score1: null,
