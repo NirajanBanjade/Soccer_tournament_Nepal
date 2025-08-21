@@ -66,23 +66,23 @@ const SoccerTournamentApp = () => {
       team2: 'KHUKURI CROSS', 
       date: '08/20/2025',
       time: '6:00 PM',
-      score1: null,
-      score2: null,
-      status: 'Opening Match'
+      score1: 0,
+      score2: 0,
+      status:  'completed'
     },
     { 
       id: 2,
       team1: 'BENGALI TIGERS', 
-      team2: 'KHUKURI CROSS', 
+      team2: 'HIMALAYAN TIGERS', 
       date: '08/22/2025',
-      time: '4:00 PM',
+      time: '6:00 PM',
       score1: null,
       score2: null,
       status: 'upcoming'
     },
     { 
       id: 3,
-      team1: 'HIMALAYAN TIGERS', 
+      team1: 'KHUKURI CROSS', 
       team2: 'BENGALI TIGERS', 
       date: '08/24/2025',
       time: '3:30 PM',
@@ -138,10 +138,11 @@ const SoccerTournamentApp = () => {
 
   // League table - UPDATE THESE DAILY
   const leagueTable = [
-    { team: 'HIMALAYAN TIGERS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
+    { team: 'HIMALAYAN TIGERS', wins: 0, losses: 0, draws: 1, points: 1, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
+    { team: 'KHUKURI CROSS', wins: 0, losses: 0, draws: 1, points: 1, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
-    { team: 'BENGALI TIGERS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
-    { team: 'KHUKURI CROSS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 }
+    { team: 'BENGALI TIGERS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 }
+
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
 
   const menuItems = [
