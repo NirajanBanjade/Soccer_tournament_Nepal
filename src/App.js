@@ -76,16 +76,16 @@ const SoccerTournamentApp = () => {
       team2: 'HIMALAYAN TIGERS', 
       date: '08/22/2025',
       time: '6:00 PM',
-      score1: null,
-      score2: null,
-      status: 'upcoming'
+      score1: 0,
+      score2: 6,
+      status: 'completed'
     },
     { 
       id: 3,
       team1: 'KHUKURI CROSS', 
       team2: 'BENGALI TIGERS', 
       date: '08/24/2025',
-      time: '3:30 PM',
+      time: '6:30 PM',
       score1: null,
       score2: null,
       status: 'upcoming'
@@ -124,25 +124,27 @@ const SoccerTournamentApp = () => {
  
   // Tournament statistics - UPDATE THESE DAILY
   const stats = {
-    topScorer: { name: 'Player Name', team: 'TEAM NAME', goals: 0 },
-    topAssists: { name: 'Player Name', team: 'TEAM NAME', assists: 0 },
+    topScorer: { name: 'Kiran Rawat ', team: 'HIMALAYAN TIGERS', goals: 3 },
+    topAssists: { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', assists: 3 },
     redCards: { 
       count: 0, 
       details: []
     },
     yellowCards: { 
-      count: 2, 
+      count: 3, 
       details: [      { player: 'Kiran Rawat (HIMALAYAN TIGERS)', match: 1 },
-        { player: 'Mahesh Ghimire (KHUKURI CROSS)', match: 1 }]
+        { player: 'Mahesh Ghimire (KHUKURI CROSS)', match: 1 },
+      {player: 'Pallav Sarkar (Bengali Tigers),',match: 2}]
     }
   };
 
   // League table - UPDATE THESE DAILY
   const leagueTable = [
-    { team: 'HIMALAYAN TIGERS', wins: 0, losses: 0, draws: 1, points: 1, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
+    { team: 'HIMALAYAN TIGERS', wins: 1, losses: 0, draws: 1, points: 4, goalDiff: 6, goalsFor: 6, goalsAgainst: 0 },
     { team: 'KHUKURI CROSS', wins: 0, losses: 0, draws: 1, points: 1, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
-    { team: 'BENGALI TIGERS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 }
+    { team: 'BENGALI TIGERS', wins: 0, losses: 2, draws: 0, points: 0, goalDiff: -6, goalsFor: 0, goalsAgainst: 6 }
+    
 
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
 
