@@ -143,7 +143,7 @@ const SoccerTournamentApp = () => {
     { team: 'HIMALAYAN TIGERS', wins: 1, losses: 0, draws: 1, points: 4, goalDiff: 6, goalsFor: 6, goalsAgainst: 0 },
     { team: 'KHUKURI CROSS', wins: 0, losses: 0, draws: 1, points: 1, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
-    { team: 'BENGALI TIGERS', wins: 0, losses: 2, draws: 0, points: 0, goalDiff: -6, goalsFor: 0, goalsAgainst: 6 }
+    { team: 'BENGALI TIGERS', wins: 0, losses: 1, draws: 0, points: 0, goalDiff: -6, goalsFor: 0, goalsAgainst: 6 }
     
 
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
