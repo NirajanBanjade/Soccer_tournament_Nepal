@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Trophy, Target, Users, AlertTriangle, Square, Menu, X, Home } from 'lucide-react';
+import { Calendar, Trophy, Target, Users, AlertTriangle, Square, Menu, X, Home,ChevronDown } from 'lucide-react';
 import './App.css';
 import HTLogo from "./images/HT.png";
 import NRLogo from "./images/NR.png";
@@ -10,11 +10,13 @@ const SoccerTournamentApp = () => {
   const [currentPage, setCurrentPage] = useState('fixtures');
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showTopScorers, setShowTopScorers] = useState(false);
+  const [showTopAssisters, setShowTopAssisters] = useState(false);
 
   // Team data with PNG logos and players
   const teams = {
     'HIMALAYAN TIGERS': {
-      logo: HTLogo, // Add your PNG file path here
+      logo: HTLogo,
       color: 'linear-gradient(135deg, #f97316 0%, #ca8a04 100%)',
       bgColor: '#fff7ed',
       players: [
@@ -25,7 +27,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     'NEPALI RHINOS': {
-      logo: NRLogo, // Add your PNG file path here
+      logo: NRLogo,
       color: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
       bgColor: '#fef2f2',
       players: [
@@ -36,7 +38,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     'BENGALI TIGERS': {
-      logo: BTLogo, // Add your PNG file path here
+      logo: BTLogo,
       color: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
       bgColor: '#faf5ff',
       players: [
@@ -46,7 +48,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     'KHUKURI CROSS': {
-      logo: KCLogo, // Add your PNG file path here
+      logo: KCLogo,
       color: 'linear-gradient(135deg, #dc2626 0%, #000000 100%)',
       bgColor: '#fef2f2',
       players: [
@@ -58,83 +60,103 @@ const SoccerTournamentApp = () => {
     }
   };
 
-  // Tournament fixtures - UPDATE THESE DAILY
+  // Tournament fixtures with scorers - UPDATE THESE DAILY
   const fixtures = [
-    { 
+    {
       id: 1,
-      team1: 'HIMALAYAN TIGERS', 
-      team2: 'KHUKURI CROSS', 
+      team1: 'HIMALAYAN TIGERS',
+      team2: 'KHUKURI CROSS',
       date: '08/20/2025',
       time: '6:00 PM',
       score1: 0,
       score2: 0,
-      status:  'completed'
+      status: 'completed',
+      scorers: []
     },
-    { 
+    {
       id: 2,
-      team1: 'BENGALI TIGERS', 
-      team2: 'HIMALAYAN TIGERS', 
+      team1: 'BENGALI TIGERS',
+      team2: 'HIMALAYAN TIGERS',
       date: '08/22/2025',
       time: '6:00 PM',
       score1: 0,
       score2: 6,
-      status: 'completed'
+      status: 'completed',
+      scorers: [
+        { player: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', goals: 3 },
+        { player: 'Ronish Karki', team: 'HIMALAYAN TIGERS', goals: 2 },
+        { player: 'Jaime', team: 'HIMALAYAN TIGERS', goals: 1 }
+      ]
     },
-    { 
+    {
       id: 3,
-      team1: 'KHUKURI CROSS', 
-      team2: 'BENGALI TIGERS', 
+      team1: 'KHUKURI CROSS',
+      team2: 'BENGALI TIGERS',
       date: '08/24/2025',
       time: '6:30 PM',
       score1: null,
       score2: null,
-      status: 'upcoming'
+      status: 'upcoming',
+      scorers: []
     },
-    { 
+    {
       id: 4,
-      team1: 'NEPALI RHINOS', 
-      team2: 'KHUKURI CROSS', 
+      team1: 'NEPALI RHINOS',
+      team2: 'KHUKURI CROSS',
       date: '08/26/2025',
       time: '4:30 PM',
       score1: null,
       score2: null,
-      status: 'upcoming'
+      status: 'upcoming',
+      scorers: []
     },
-    { 
+    {
       id: 5,
-      team1: 'HIMALAYAN TIGERS', 
-      team2: 'NEPALI RHINOS', 
+      team1: 'HIMALAYAN TIGERS',
+      team2: 'NEPALI RHINOS',
       date: '08/28/2025',
       time: '3:00 PM',
       score1: null,
       score2: null,
-      status: 'upcoming'
+      status: 'upcoming',
+      scorers: []
     },
-    { 
+    {
       id: 6,
-      team1: 'NEPALI RHINOS', 
-      team2: 'BENGALI TIGERS', 
+      team1: 'NEPALI RHINOS',
+      team2: 'BENGALI TIGERS',
       date: '08/30/2025',
       time: '4:00 PM',
       score1: null,
       score2: null,
-      status: 'upcoming'
+      status: 'upcoming',
+      scorers: []
     }
   ];
- 
-  // Tournament statistics - UPDATE THESE DAILY
+
+  // Tournament statistics with lists - UPDATE THESE DAILY
   const stats = {
-    topScorer: { name: 'Kiran Rawat ', team: 'HIMALAYAN TIGERS', goals: 3 },
-    topAssists: { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', assists: 3 },
-    redCards: { 
-      count: 0, 
+    topScorers: [
+      { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', goals: 3 },
+      { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', goals: 2 },
+      { name: 'Jaime', team: 'HIMALAYAN TIGERS', goals: 1 }
+    ],
+    topAssisters: [
+      { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', assists: 3 },
+      { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', assists: 2 },
+      { name: 'Omar', team: 'HIMALAYAN TIGERS', assists: 1 }
+    ],
+    redCards: {
+      count: 0,
       details: []
     },
-    yellowCards: { 
-      count: 3, 
-      details: [      { player: 'Kiran Rawat (HIMALAYAN TIGERS)', match: 1 },
+    yellowCards: {
+      count: 3,
+      details: [
+        { player: 'Kiran Rawat (HIMALAYAN TIGERS)', match: 1 },
         { player: 'Mahesh Ghimire (KHUKURI CROSS)', match: 1 },
-      {player: 'Pallav Sarkar (Bengali Tigers),',match: 2}]
+        { player: 'Pallav Sarkar (Bengali Tigers)', match: 2 }
+      ]
     }
   };
 
@@ -144,8 +166,6 @@ const SoccerTournamentApp = () => {
     { team: 'KHUKURI CROSS', wins: 0, losses: 0, draws: 1, points: 1, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'BENGALI TIGERS', wins: 0, losses: 1, draws: 0, points: 0, goalDiff: -6, goalsFor: 0, goalsAgainst: 6 }
-    
-
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
 
   const menuItems = [
@@ -154,32 +174,66 @@ const SoccerTournamentApp = () => {
     { id: 'statistics', label: 'Statistics', icon: Trophy }
   ];
 
+  // Scorer List Modal Component
+  const ScorerListModal = ({ title, list, type, isOpen, onClose }) => (
+    isOpen && (
+      <div className="team-modal" onClick={onClose}>
+        <div className="team-modal-content scorer-modal-content" onClick={e => e.stopPropagation()}>
+          <div className="team-modal-header" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' }}>
+            <div className="team-modal-info">
+              <Trophy size={32} color="white" />
+              <h2 className="team-modal-title">{title}</h2>
+            </div>
+            <button onClick={onClose} className="modal-close-button">×</button>
+          </div>
+          
+          <div className="team-modal-body">
+            <div className="scorer-list">
+              {list.map((player, index) => (
+                <div key={index} className="scorer-item">
+                  <div className="scorer-rank">#{index + 1}</div>
+                  <div className="scorer-info">
+                    <div className="scorer-name">{player.name}</div>
+                    <div className="scorer-team">{player.team}</div>
+                  </div>
+                  <div className="scorer-stats">
+                    {type === 'goals' ? player.goals : player.assists} {type === 'goals' ? 'Goals' : 'Assists'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  );
+
   const TeamModal = ({ team, onClose }) => (
     <div className="team-modal" onClick={onClose}>
-      <div 
+      <div
         className="team-modal-content"
         onClick={e => e.stopPropagation()}
       >
-        <div 
-          className="team-modal-header" 
+        <div
+          className="team-modal-header"
           style={{ background: teams[team].color }}
         >
           <div className="team-modal-info">
-            <img 
-              src={teams[team].logo} 
+            <img
+              src={teams[team].logo}
               alt={`${team} logo`}
               className="team-modal-logo-img"
             />
             <h2 className="team-modal-title">{team}</h2>
           </div>
-          <button 
+          <button
             onClick={onClose}
             className="modal-close-button"
           >
             ×
           </button>
         </div>
-        
+
         <div className="team-modal-body">
           <h3 className="players-section-title">
             <Users size={24} />
@@ -211,18 +265,18 @@ const SoccerTournamentApp = () => {
           <div key={index} className="fixture-card">
             <div className="fixture-content">
               <div className="fixture-teams-container">
-                <button 
+                <button
                   onClick={() => setSelectedTeam(fixture.team1)}
                   className={`team-button team-${fixture.team1.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <img 
-                    src={teams[fixture.team1].logo} 
+                  <img
+                    src={teams[fixture.team1].logo}
                     alt={`${fixture.team1} logo`}
                     className="team-logo-img"
                   />
                   <span>{fixture.team1}</span>
                 </button>
-                
+
                 <div className="vs-container">
                   {fixture.status === 'completed' ? (
                     <div className="score-display">
@@ -235,24 +289,41 @@ const SoccerTournamentApp = () => {
                     {fixture.date} • {fixture.time}
                   </div>
                 </div>
-                
-                <button 
+
+                <button
                   onClick={() => setSelectedTeam(fixture.team2)}
                   className={`team-button reverse team-${fixture.team2.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <img 
-                    src={teams[fixture.team2].logo} 
+                  <img
+                    src={teams[fixture.team2].logo}
                     alt={`${fixture.team2} logo`}
                     className="team-logo-img"
                   />
                   <span>{fixture.team2}</span>
                 </button>
               </div>
-              
+
               <div className={`status-badge ${fixture.status === 'completed' ? 'status-completed' : 'status-upcoming'}`}>
                 {fixture.status === 'completed' ? 'Completed' : 'Upcoming'}
               </div>
             </div>
+
+            {/* Scorers Section */}
+            {fixture.status === 'completed' && fixture.scorers.length > 0 && (
+              <div className="scorers-section">
+                <h4 className="scorers-title">⚽ Goal Scorers</h4>
+                <div className="scorers-list">
+                  {fixture.scorers.map((scorer, idx) => (
+                    <div key={idx} className="scorer-badge">
+                      <span className="scorer-name">{scorer.player}</span>
+                      <span className="scorer-goals">
+                        {Array.from({ length: scorer.goals }, (_, i) => '⚽').join(' ')}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -290,12 +361,12 @@ const SoccerTournamentApp = () => {
                   </div>
                 </td>
                 <td className="table-cell">
-                  <button 
+                  <button
                     onClick={() => setSelectedTeam(team.team)}
                     className="team-info-button"
                   >
-                    <img 
-                      src={teams[team.team].logo} 
+                    <img
+                      src={teams[team.team].logo}
                       alt={`${team.team} logo`}
                       className="team-info-logo-img"
                     />
@@ -323,19 +394,28 @@ const SoccerTournamentApp = () => {
   );
 
   const StatisticsPage = () => {
-    const StatCard = ({ icon: Icon, title, value, subtitle, cardType, details = [] }) => (
-      <div className={`stat-card ${cardType}`}>
+    const StatCard = ({ icon: Icon, title, value, subtitle, cardType, details = [], onClick, isClickable = false }) => (
+      <div 
+        className={`stat-card ${cardType} ${isClickable ? 'clickable-stat-card' : ''}`}
+        onClick={onClick}
+        style={{ cursor: isClickable ? 'pointer' : 'default' }}
+      >
         <div className="stat-card-header">
           <div className="stat-card-info">
             <p className="stat-title">{title}</p>
             <p className="stat-value">{value}</p>
             {subtitle && <p className="stat-subtitle">{subtitle}</p>}
+            {isClickable && (
+              <p className="click-hint">
+                <ChevronDown size={16} /> Click to see full list
+              </p>
+            )}
           </div>
           <div className="stat-icon-container">
             <Icon size={32} color="white" />
           </div>
         </div>
-        
+
         {details && details.length > 0 && (cardType === 'red-cards' || cardType === 'yellow-cards') && (
           <div className="card-details">
             <p className="card-details-title">
@@ -363,17 +443,21 @@ const SoccerTournamentApp = () => {
         <div className="stats-grid">
           <StatCard
             icon={Trophy}
-            title="Top Scorer"
-            value={stats.topScorer.goals}
-            subtitle={`${stats.topScorer.name} (${stats.topScorer.team})`}
+            title="Top Scorers"
+            value={stats.topScorers[0]?.goals || 0}
+            subtitle={`${stats.topScorers[0]?.name || 'No goals yet'} (${stats.topScorers[0]?.team || ''})`}
             cardType="goals"
+            isClickable={true}
+            onClick={() => setShowTopScorers(true)}
           />
           <StatCard
             icon={Target}
-            title="Most Assists"
-            value={stats.topAssists.assists}
-            subtitle={`${stats.topAssists.name} (${stats.topAssists.team})`}
+            title="Top Assisters"
+            value={stats.topAssisters[0]?.assists || 0}
+            subtitle={`${stats.topAssisters[0]?.name || 'No assists yet'} (${stats.topAssisters[0]?.team || ''})`}
             cardType="assists"
+            isClickable={true}
+            onClick={() => setShowTopAssisters(true)}
           />
           <StatCard
             icon={Square}
@@ -424,7 +508,7 @@ const SoccerTournamentApp = () => {
       <nav className="nav-container">
         <div className="nav-content">
           <div className="nav-logo">Tournament</div>
-          
+
           {/* Desktop Menu */}
           <ul className="nav-desktop-menu">
             {menuItems.map(item => (
@@ -441,7 +525,7 @@ const SoccerTournamentApp = () => {
           </ul>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="nav-mobile-button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -479,11 +563,28 @@ const SoccerTournamentApp = () => {
 
       {/* Team Modal */}
       {selectedTeam && (
-        <TeamModal 
-          team={selectedTeam} 
-          onClose={() => setSelectedTeam(null)} 
+        <TeamModal
+          team={selectedTeam}
+          onClose={() => setSelectedTeam(null)}
         />
       )}
+
+      {/* Scorer List Modals */}
+      <ScorerListModal
+        title="Top Goal Scorers"
+        list={stats.topScorers}
+        type="goals"
+        isOpen={showTopScorers}
+        onClose={() => setShowTopScorers(false)}
+      />
+
+      <ScorerListModal
+        title="Top Assist Providers"
+        list={stats.topAssisters}
+        type="assists"
+        isOpen={showTopAssisters}
+        onClose={() => setShowTopAssisters(false)}
+      />
     </div>
   );
 };

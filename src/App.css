@@ -987,3 +987,184 @@
     outline-offset: 2px;
   }
 }
+.scorers-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.scorers-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scorers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.scorer-badge {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #93c5fd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.scorer-name {
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.scorer-goals {
+  font-size: 0.75rem;
+}
+
+/* Clickable Stat Card Styles */
+.clickable-stat-card {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.clickable-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.click-hint {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Scorer Modal Styles */
+.scorer-modal-content {
+  max-width: 500px;
+}
+
+.scorer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.scorer-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  gap: 1rem;
+}
+
+.scorer-rank {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.scorer-info {
+  flex: 1;
+}
+
+.scorer-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.scorer-team {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.scorer-stats {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #92400e;
+  font-size: 0.875rem;
+}
+
+/* Mobile Responsive for Scorers */
+@media (max-width: 768px) {
+  .scorers-section {
+    margin-top: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .scorers-title {
+    font-size: 0.875rem;
+  }
+  
+  .scorer-badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+  
+  .scorer-item {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+  
+  .scorer-rank {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+  
+  .scorer-name {
+    font-size: 0.875rem;
+  }
+  
+  .scorer-team {
+    font-size: 0.75rem;
+  }
+  
+  .scorer-stats {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+  
+  .click-hint {
+    font-size: 0.625rem;
+  }
+}
+
+/* Increase fixture card height */
+.fixture-card {
+  min-height: 200px; /* Increased from default */
+}
+
+.fixture-content {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.fixture-teams-container {
+  margin-bottom: 1rem;
+}
