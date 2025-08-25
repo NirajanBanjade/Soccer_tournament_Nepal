@@ -94,17 +94,19 @@ const SoccerTournamentApp = () => {
       team2: 'BENGALI TIGERS',
       date: '08/24/2025',
       time: '6:30 PM',
-      score1: null,
-      score2: null,
-      status: 'upcoming',
-      scorers: []
+      score1: 1,
+      score2: 0,
+      status: 'completed',
+      scorers: [
+        { player: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 1 }
+      ]
     },
     {
       id: 4,
       team1: 'NEPALI RHINOS',
       team2: 'KHUKURI CROSS',
-      date: '08/26/2025',
-      time: '4:30 PM',
+      date: '08/27/2025',
+      time: '6:30 PM',
       score1: null,
       score2: null,
       status: 'upcoming',
@@ -139,16 +141,22 @@ const SoccerTournamentApp = () => {
     topScorers: [
       { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', goals: 3 },
       { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', goals: 2 },
-      { name: 'Jaime', team: 'HIMALAYAN TIGERS', goals: 1 }
+      { name: 'Jaime', team: 'HIMALAYAN TIGERS', goals: 1 },
+      { name: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 1 }
     ],
     topAssisters: [
       { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', assists: 3 },
       { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', assists: 2 },
-      { name: 'Omar', team: 'HIMALAYAN TIGERS', assists: 1 }
+      { name: 'Omar', team: 'HIMALAYAN TIGERS', assists: 1 },
+      { name: 'Shishir Khanal', team: 'KHUKURI CROSS', assists: 1 }
     ],
     redCards: {
-      count: 0,
-      details: []
+      count: 3,
+      details: [
+        { player: 'Tausif Islam (BENGALI TIGERS)', match: 3 },
+        { player: 'Rashid (BENGALI TIGERS)', match: 3 },
+        { player: 'PIYUSH KC (KHUKURI CROSS)', match: 3 }
+      ]
     },
     yellowCards: {
       count: 3,
