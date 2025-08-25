@@ -148,7 +148,7 @@ const SoccerTournamentApp = () => {
       { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', assists: 3 },
       { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', assists: 2 },
       { name: 'Omar', team: 'HIMALAYAN TIGERS', assists: 1 },
-      { name: 'Shishir Khanal', team: 'KHUKURI CROSS', assists: 1 }
+      { name: 'Swarnim Khanal', team: 'KHUKURI CROSS', assists: 1 }
     ],
     redCards: {
       count: 3,
