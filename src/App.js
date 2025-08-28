@@ -107,8 +107,8 @@ const SoccerTournamentApp = () => {
       team2: 'KHUKURI CROSS',
       date: '08/27/2025',
       time: '6:30 PM',
-      score1: 1,
-      score2: 0,
+      score1: 0,
+      score2: 1, 
       status: 'completed',
       scorers: [{ player: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 1 }]
     },
