@@ -107,10 +107,10 @@ const SoccerTournamentApp = () => {
       team2: 'KHUKURI CROSS',
       date: '08/27/2025',
       time: '6:30 PM',
-      score1: null,
-      score2: null,
-      status: 'upcoming',
-      scorers: []
+      score1: 1,
+      score2: 0,
+      status: 'completed',
+      scorers: [{ player: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 1 }]
     },
     {
       id: 5,
@@ -142,13 +142,14 @@ const SoccerTournamentApp = () => {
       { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', goals: 3 },
       { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', goals: 2 },
       { name: 'Jaime', team: 'HIMALAYAN TIGERS', goals: 1 },
-      { name: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 1 }
+      { name: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 2 }
     ],
     topAssisters: [
       { name: 'Kiran Rawat', team: 'HIMALAYAN TIGERS', assists: 3 },
       { name: 'Ronish Karki', team: 'HIMALAYAN TIGERS', assists: 2 },
       { name: 'Omar', team: 'HIMALAYAN TIGERS', assists: 1 },
-      { name: 'Swarnim Khanal', team: 'KHUKURI CROSS', assists: 1 }
+      { name: 'Swarnim Khanal', team: 'KHUKURI CROSS', assists: 1 },
+      { name: 'Piyush KC', team: 'KHUKURI CROSS', assists: 1 }
     ],
     redCards: {
       count: 3,
@@ -163,15 +164,18 @@ const SoccerTournamentApp = () => {
       details: [
         { player: 'Kiran Rawat (HIMALAYAN TIGERS)', match: 1 },
         { player: 'Mahesh Ghimire (KHUKURI CROSS)', match: 1 },
-        { player: 'Pallav Sarkar (Bengali Tigers)', match: 2 }
+        { player: 'Pallav Sarkar (BENGALI TIGERS)', match: 2 },
+        { player: 'Swapnil Basnet (NEPALI RHINOS)', match: 4 },
+        { player: 'Shishir Khanal (KHUKURI CROSS)', match: 4}
       ]
     }
   };
 
   // League table - UPDATE THESE DAILY
   const leagueTable = [
+    { team: 'KHUKURI CROSS', wins: 2, losses: 0, draws: 1, points: 7, goalDiff: 2, goalsFor: 2, goalsAgainst: 0 },
     { team: 'HIMALAYAN TIGERS', wins: 1, losses: 0, draws: 1, points: 4, goalDiff: 6, goalsFor: 6, goalsAgainst: 0 },
-    { team: 'KHUKURI CROSS', wins: 1, losses: 0, draws: 1, points: 4, goalDiff: 1, goalsFor: 1, goalsAgainst: 0 },
+    
     { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'BENGALI TIGERS', wins: 0, losses: 2, draws: 0, points: 0, goalDiff: -7, goalsFor: 0, goalsAgainst: 7 }
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
