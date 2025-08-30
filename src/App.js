@@ -120,7 +120,7 @@ const SoccerTournamentApp = () => {
       time: '6:30 PM',
       score1: 0,
       score2: 0,
-      status: 'upcoming',
+      status: 'completed',
       scorers: []
     },
     {
