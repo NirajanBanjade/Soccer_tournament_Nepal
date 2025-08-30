@@ -116,10 +116,10 @@ const SoccerTournamentApp = () => {
       id: 5,
       team1: 'HIMALAYAN TIGERS',
       team2: 'NEPALI RHINOS',
-      date: '08/28/2025',
-      time: '3:00 PM',
-      score1: null,
-      score2: null,
+      date: '08/29/2025',
+      time: '6:30 PM',
+      score1: 0,
+      score2: 0,
       status: 'upcoming',
       scorers: []
     },
@@ -160,13 +160,16 @@ const SoccerTournamentApp = () => {
       ]
     },
     yellowCards: {
-      count: 3,
+      count: 5,
       details: [
         { player: 'Kiran Rawat (HIMALAYAN TIGERS)', match: 1 },
         { player: 'Mahesh Ghimire (KHUKURI CROSS)', match: 1 },
         { player: 'Pallav Sarkar (BENGALI TIGERS)', match: 2 },
         { player: 'Swapnil Basnet (NEPALI RHINOS)', match: 4 },
-        { player: 'Shishir Khanal (KHUKURI CROSS)', match: 4}
+        { player: 'Shishir Khanal (KHUKURI CROSS)', match: 4},
+        { player: 'Pravidi V Neupane (NEPALI RHINOS)', match: 5},
+        { player: 'Prajwal Kunwar (NEPALI RHINOS)', match: 5},
+        { player: 'Omar (HIMALAYAN TIGERS)', match: 5}
       ]
     }
   };
@@ -174,9 +177,9 @@ const SoccerTournamentApp = () => {
   // League table - UPDATE THESE DAILY
   const leagueTable = [
     { team: 'KHUKURI CROSS', wins: 2, losses: 0, draws: 1, points: 7, goalDiff: 2, goalsFor: 2, goalsAgainst: 0 },
-    { team: 'HIMALAYAN TIGERS', wins: 1, losses: 0, draws: 1, points: 4, goalDiff: 6, goalsFor: 6, goalsAgainst: 0 },
+    { team: 'HIMALAYAN TIGERS', wins: 1, losses: 0, draws: 2, points: 5, goalDiff: 6, goalsFor: 6, goalsAgainst: 0 },
     
-    { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
+    { team: 'NEPALI RHINOS', wins: 0, losses: 1, draws: 1, points: 0, goalDiff: -1, goalsFor: 0, goalsAgainst: 1},
     { team: 'BENGALI TIGERS', wins: 0, losses: 2, draws: 0, points: 0, goalDiff: -7, goalsFor: 0, goalsAgainst: 7 }
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
 
