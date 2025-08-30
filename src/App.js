@@ -160,7 +160,7 @@ const SoccerTournamentApp = () => {
       ]
     },
     yellowCards: {
-      count: 5,
+      count: 8,
       details: [
         { player: 'Kiran Rawat (HIMALAYAN TIGERS)', match: 1 },
         { player: 'Mahesh Ghimire (KHUKURI CROSS)', match: 1 },
