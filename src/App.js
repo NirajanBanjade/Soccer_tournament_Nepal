@@ -107,8 +107,8 @@ const SoccerTournamentApp = () => {
       team2: 'KHUKURI CROSS',
       date: '08/27/2025',
       time: '6:30 PM',
-      score1: 1,
-      score2: 0,
+      score1: 0,
+      score2: 1, 
       status: 'completed',
       scorers: [{ player: 'Mahesh Ghimire', team: 'KHUKURI CROSS', goals: 1 }]
     },
@@ -179,7 +179,7 @@ const SoccerTournamentApp = () => {
     { team: 'KHUKURI CROSS', wins: 2, losses: 0, draws: 1, points: 7, goalDiff: 2, goalsFor: 2, goalsAgainst: 0 },
     { team: 'HIMALAYAN TIGERS', wins: 1, losses: 0, draws: 2, points: 5, goalDiff: 6, goalsFor: 6, goalsAgainst: 0 },
     
-    { team: 'NEPALI RHINOS', wins: 0, losses: 1, draws: 1, points: 0, goalDiff: -1, goalsFor: 0, goalsAgainst: 1},
+    { team: 'NEPALI RHINOS', wins: 0, losses: 0, draws: 0, points: 0, goalDiff: 0, goalsFor: 0, goalsAgainst: 0 },
     { team: 'BENGALI TIGERS', wins: 0, losses: 2, draws: 0, points: 0, goalDiff: -7, goalsFor: 0, goalsAgainst: 7 }
   ].sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
 
